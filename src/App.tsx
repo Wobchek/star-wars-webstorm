@@ -12,7 +12,7 @@ function App() {
                 </p>
                 <div>
                     <p>STAR WARS planets</p>
-                    <p>Dev branch changes</p>
+                    <p>Develop/popup branch commit</p>
                 </div>
                 <a
                     className="App-link"
