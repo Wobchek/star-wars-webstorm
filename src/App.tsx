@@ -12,6 +12,8 @@ function App() {
                 </p>
                 <div>
                     <p>STAR WARS planets</p>
+                    <p>Develop/login branch commit</p>
+                    <p>Develop/login branch another commit</p>
                     <p>Develop/popup branch commit</p>
                     <p>Develop/popup branch another commit</p>
                 </div>
