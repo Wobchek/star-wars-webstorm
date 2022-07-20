@@ -13,6 +13,7 @@ function App() {
                 <div>
                     <p>STAR WARS planets</p>
                     <p>Develop/popup branch commit</p>
+                    <p>Develop/popup branch another commit</p>
                 </div>
                 <a
                     className="App-link"
