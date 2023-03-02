@@ -1,0 +1,12 @@
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 5px solid greenyellow;
+    width: 330px;
+}
+
+.img {
+    width: 330px;
+    border-radius: 100%;
+}

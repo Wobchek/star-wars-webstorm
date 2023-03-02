@@ -1,0 +1,10 @@
+.header {
+    border: 5px solid orange;
+    max-height: 300px;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.header_img {
+    max-width: 300px;
+}

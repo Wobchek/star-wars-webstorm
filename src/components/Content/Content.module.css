@@ -1,0 +1,18 @@
+.content {
+    padding: 20px;
+    background-image: none;
+    border: 5px solid red;
+    /*background-color: transparent;*/
+    background-color: grey;
+    font-size: 30px;
+    color: red;
+
+
+    /*Flex ---------------------------*/
+    display: flex;
+    align-items: normal;
+    justify-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+}

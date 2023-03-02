@@ -1,33 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import HeaderContainer from "./components/Header/HeaderContainer";
+import ContentContainer from "./components/Content/ContentContainer";
+// import {Routes, Route} from 'react-router-dom';
 
-function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <div>
-                    <p>STAR WARS planets</p>
-                    <p>Develop/login branch commit</p>
-                    <p>Develop/login branch another commit</p>
-                    <p>Develop/popup branch commit</p>
-                    <p>Develop/popup branch another commit</p>
+class App extends React.Component {
+    render() {
+        return (
+                <div className='app-wrapper'>
+                    <HeaderContainer/>
+                    <ContentContainer/>
+                    {/*<div className='app-wrapper-content'>*/}
+                    {/*    <Routes>*/}
+                    {/*        <Route path="/planets"*/}
+                    {/*               element={<PlanetsContainer/>}/>*/}
+
+                    {/*        <Route path="/people"*/}
+                    {/*               element={<PeopleContainer/>}/>*/}
+
+                    {/*        <Route path="/spaceships"*/}
+                    {/*               element={<SpaceshipsContainer/>}/>*/}
+                    {/*    </Routes>*/}
+                    {/*</div>*/}
                 </div>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
+        )
+    }
 }
+
 
 export default App;
