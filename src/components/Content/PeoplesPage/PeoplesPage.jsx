@@ -12,7 +12,7 @@ const PeoplesPage = (props) => {
     return (
         <div className={styles.content}>
             { contentPeople }
-            {/*<button onClick={props.addPeople('Эвоки')}> СЮДА</button>*/}
+            {props.addPeople('Эвоки')}
         </div>
     )
 }

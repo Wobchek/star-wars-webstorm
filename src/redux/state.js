@@ -6,7 +6,6 @@ import obiWanKenobi from "../assets/images/Obi_Wan_Kenobi.jpg";
 import chewbacca from "../assets/images/Chewbacca.jpg";
 import hanSolo from "../assets/images/Han_Solo.jpg";
 import defaultImg from "../assets/images/Peoples.jpg";
-import {rerenderEntireTree} from "../render";
 
 let state = {
 
@@ -43,7 +42,6 @@ export let addPeople = (peopleName) => {
     }
 
     state.peoplesPage.peoples.push(newPeople)
-    // rerenderEntireTree(state);
 }
 
 export let addPlanet = (planetName) => {
@@ -54,7 +52,6 @@ export let addPlanet = (planetName) => {
     }
 
     state.planetsPage.planets.push(newPlanet)
-    // rerenderEntireTree(state);
 }
 
 export default state;
