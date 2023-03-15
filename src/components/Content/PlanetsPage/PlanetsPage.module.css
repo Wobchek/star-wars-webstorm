@@ -1,0 +1,13 @@
+.content {
+    padding: 20px;
+    border: 5px solid red;
+    /*background-color: transparent;*/
+    /*background: url("../../assets/images/sky.jpg");*/
+    background-color: grey;
+
+    /*Flex ---------------------------*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+}

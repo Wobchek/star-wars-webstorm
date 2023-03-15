@@ -3,8 +3,25 @@
     max-height: 300px;
     padding: 50px;
     margin: 0 auto;
+    flex-shrink: 0
 }
 
 .header_img {
     max-width: 300px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.pending {
+    text-decoration: unset;
+    color: white;
+}
+
+.active {
+    text-decoration: unset;
+    color: gold;
 }

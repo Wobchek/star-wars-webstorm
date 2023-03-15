@@ -5,7 +5,7 @@ class ContentContainer extends React.Component {
 
     render() {
         return (
-            <Content />
+            <Content {...this.props}/>
         )
     };
 }

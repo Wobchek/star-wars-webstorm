@@ -1,20 +1,17 @@
 import React from 'react';
-import styles from './Content.module.css';
-import Card from "./Card/Card";
+import {Routes, Route} from "react-router-dom";
+import PlanetsPageContainer from "./PlanetsPage/PlanetsPageContainer";
+import PeoplesPageContainer from "./PeoplesPage/PeoplesPageContainer";
 
-
+/*Отображаемый материал страницы*/
 const Content = (props) => {
     return (
-        <div className={styles.content}>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+        <div>
+            <Routes>
+                <Route path="/" element={<PlanetsPageContainer planetsPage={props.state.planetsPage} addPlanet={props.addPlanet}/>}/>
+                <Route path="/planets" element={<PlanetsPageContainer planetsPage={props.state.planetsPage} addPlanet={props.addPlanet}/>}/>
+                <Route path="/peoples" element={<PeoplesPageContainer peoplesPage={props.state.peoplesPage} addPeople={props.addPeople}/>}/>
+            </Routes>
         </div>
     )
 }
