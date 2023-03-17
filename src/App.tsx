@@ -8,7 +8,7 @@ import ContentContainer from "./components/Content/ContentContainer";
 function App(props: any) {
     return (
         <div className='app-wrapper'>
-            <HeaderContainer/>
+            <HeaderContainer state={props.state} updateSearchText={props.updateSearchText}/>
             <ContentContainer state={props.state} addPeople={props.addPeople} addPlanet={props.addPlanet}/>
         </div>
     )

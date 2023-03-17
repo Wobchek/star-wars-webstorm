@@ -3,25 +3,16 @@
     max-height: 300px;
     padding: 50px;
     margin: 0 auto;
-    flex-shrink: 0
+    flex-shrink: 0;
 }
 
-.header_img {
-    max-width: 300px;
-}
-
-.navbar {
+.header_logo {
     display: flex;
     justify-content: center;
-    gap: 15px;
 }
 
-.pending {
-    text-decoration: unset;
-    color: white;
-}
-
-.active {
-    text-decoration: unset;
-    color: gold;
+.header_navbar_searchbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

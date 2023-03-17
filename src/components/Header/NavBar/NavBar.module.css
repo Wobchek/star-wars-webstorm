@@ -1,0 +1,16 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.7rem;
+}
+
+.pending {
+    text-decoration: unset;
+    color: white;
+}
+
+.active {
+    text-decoration: unset;
+    color: gold;
+}

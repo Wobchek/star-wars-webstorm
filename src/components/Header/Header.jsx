@@ -1,31 +1,24 @@
 import React from 'react';
 import styles from './Header.module.css'
-import logo from '../../assets/images/star-wars-logo.jpg';
-import {NavLink} from "react-router-dom";
+import NavBarContainer from "./NavBar/NavBarContainer";
+import SearchBarContainer from "./SearchBar/SearchBarContainer";
+import LogoContainer from "./Logo/LogoContainer";
+import {updateSearchText} from "../../redux/state";
 
 const Header = (props) => {
     return (
-        <header className={styles.header}>
-            <NavLink to="/">
-                <img className={styles.header_img} src={logo}/>
-            </NavLink>
-            <nav className={styles.navbar}>
-                <NavLink
-                    to="/planets"
-                    className={({isActive, isPending}) =>
-                        isPending ? styles.pending : isActive ? styles.active : ""
-                    }
-                >Планеты</NavLink>
+        <div>
+            <header className={styles.header}>
+                <div className={styles.header_logo}>
+                    <LogoContainer state={props.state.logo}/>
+                </div>
+                <div className={styles.header_navbar_searchbar}>
+                    <NavBarContainer/>
+                    <SearchBarContainer state={props.state} updateSearchText={props.updateSearchText}/>
+                </div>
+            </header>
 
-                <NavLink
-                    to="/peoples"
-                    className={({isActive, isPending}) =>
-                        isPending ? styles.pending : isActive ? styles.active : ""
-                    }
-                >Персонажи</NavLink>
-
-            </nav>
-        </header>
+        </div>
     )
 }
 
