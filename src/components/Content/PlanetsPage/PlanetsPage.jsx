@@ -1,18 +1,20 @@
 import React from 'react';
 import styles from './PlanetsPage.module.css';
 import ContentItem from "../ContentItem/ContentItem";
+import {addPlanetActionCreator} from "../../../redux/state";
 
 
 /*Отображаемый материал страницы*/
 const PlanetsPage = (props) => {
     /*Мапинг исходного массива объектов*/
     let contentPlanets = props.planetsPage.planets.map(p => <ContentItem id={p.id} name={p.name} image={p.img}/>)
+    let action = addPlanetActionCreator('Земля');
 
     return (
         <div>
             <div className={styles.content}>
                 {contentPlanets}
-                {props.addPlanet('Земля')}
+                {props.dispatch(action)}
             </div>
         </div>
     )

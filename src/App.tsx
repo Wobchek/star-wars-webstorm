@@ -8,8 +8,8 @@ import ContentContainer from "./components/Content/ContentContainer";
 function App(props: any) {
     return (
         <div className='app-wrapper'>
-            <HeaderContainer state={props.state} updateSearchText={props.updateSearchText}/>
-            <ContentContainer state={props.state} addPeople={props.addPeople} addPlanet={props.addPlanet}/>
+            <HeaderContainer state={props.state} dispatch={props.dispatch}/>
+            <ContentContainer state={props.state} dispatch={props.dispatch}/>
         </div>
     )
 }

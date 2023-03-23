@@ -3,7 +3,6 @@ import styles from './Header.module.css'
 import NavBarContainer from "./NavBar/NavBarContainer";
 import SearchBarContainer from "./SearchBar/SearchBarContainer";
 import LogoContainer from "./Logo/LogoContainer";
-import {updateSearchText} from "../../redux/state";
 
 const Header = (props) => {
     return (
@@ -14,7 +13,7 @@ const Header = (props) => {
                 </div>
                 <div className={styles.header_navbar_searchbar}>
                     <NavBarContainer/>
-                    <SearchBarContainer state={props.state} updateSearchText={props.updateSearchText}/>
+                    <SearchBarContainer state={props.state} dispatch={props.dispatch}/>
                 </div>
             </header>
 

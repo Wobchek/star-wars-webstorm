@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 
 const NavBar = (props) => {
     return (
-
         <nav className={styles.navbar}>
             <NavLink
                 to="/planets"

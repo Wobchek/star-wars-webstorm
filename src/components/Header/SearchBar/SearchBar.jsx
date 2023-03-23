@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './SearchBar.module.css'
+import {updateSearchTextActionCreator} from "../../../redux/state";
 
 const SearchBar = (props) => {
     let searchRef = React.createRef()
     let onSearchChangeFunction = () => {
         let text = searchRef.current.value;
-        props.updateSearchText(text);
+        let action = updateSearchTextActionCreator(text)
+        props.dispatch(action);
     }
 
     return (
