@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Header.module.css'
 import NavBarContainer from "./NavBar/NavBarContainer";
-import SearchBarContainer from "./SearchBar/SearchBarContainer";
 import LogoContainer from "./Logo/LogoContainer";
 
 const Header = (props) => {
@@ -11,9 +10,8 @@ const Header = (props) => {
                 <div className={styles.header_logo}>
                     <LogoContainer state={props.state.logo}/>
                 </div>
-                <div className={styles.header_navbar_searchbar}>
+                <div className={styles.header_navbar}>
                     <NavBarContainer/>
-                    <SearchBarContainer state={props.state} dispatch={props.dispatch}/>
                 </div>
             </header>
 
