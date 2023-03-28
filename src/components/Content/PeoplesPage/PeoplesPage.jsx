@@ -11,9 +11,8 @@ const PeoplesPage = (props) => {
 
     return (
         <div className={styles.content}>
-            {/*{contentPeople(peoples)}*/}
             { contentPeople }
-            {props.dispatch(action)}
+            {/*{props.dispatch(action)}*/}
         </div>
     )
 }
