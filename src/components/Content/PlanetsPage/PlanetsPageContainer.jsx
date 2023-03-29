@@ -1,13 +1,15 @@
 import React from 'react';
 import PlanetsPage from "./PlanetsPage";
+import {addPlanetActionCreator} from "../../../redux/PlanetsPageReducer";
 
-class PlanetsPageContainer extends React.Component {
-
-    render() {
-        return (
-            <PlanetsPage {...this.props}/>
-        )
-    };
+function PlanetsPageContainer(props) {
+    let newPlanet = () => {
+        let action = addPlanetActionCreator('Земля');
+        props.dispatch(action)
+    }
+    return (
+        <PlanetsPage planetsPage={props.planetsPage} addPlanet={newPlanet}/>
+    )
 }
 
 export default PlanetsPageContainer;

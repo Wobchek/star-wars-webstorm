@@ -1,13 +1,15 @@
 import React from 'react';
 import PeoplesPage from "./PeoplesPage";
+import {addPeopleActionCreator} from "../../../redux/PeoplesPageReducer";
 
-class PeoplesPageContainer extends React.Component {
-
-    render() {
-        return (
-            <PeoplesPage {...this.props}/>
-        )
-    };
+function PeoplesPageContainer(props) {
+    let newPeople = () => {
+        let action = addPeopleActionCreator('Эвоки');
+        props.dispatch(action)
+    }
+    return (
+        <PeoplesPage peoplesPage={props.peoplesPage} addPeople={newPeople}/>
+    )
 }
 
 export default PeoplesPageContainer;
