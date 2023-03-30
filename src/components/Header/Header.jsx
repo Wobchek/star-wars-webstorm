@@ -8,7 +8,7 @@ const Header = (props) => {
         <div>
             <header className={styles.header}>
                 <div className={styles.header_logo}>
-                    <LogoContainer state={props.state.logo}/>
+                    <LogoContainer />
                 </div>
                 <div className={styles.header_navbar}>
                     <NavBarContainer/>

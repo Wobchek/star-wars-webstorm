@@ -1,15 +1,23 @@
 import React from 'react';
 import PeoplesPage from "./PeoplesPage";
 import {addPeopleActionCreator} from "../../../redux/PeoplesPageReducer";
+import {connect} from "react-redux";
 
-function PeoplesPageContainer(props) {
-    let newPeople = () => {
-        let action = addPeopleActionCreator('Эвоки');
-        props.dispatch(action)
+
+const mapStateToProps = (state) => {
+    return {
+        peoplesPage: state.peoplesPage,
     }
-    return (
-        <PeoplesPage peoplesPage={props.peoplesPage} addPeople={newPeople}/>
-    )
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPeople: () => {
+            let action = addPeopleActionCreator('Эвоки');
+            dispatch(action)
+        },
+    }
+}
+
+const PeoplesPageContainer = connect(mapStateToProps, mapDispatchToProps)(PeoplesPage);
 
 export default PeoplesPageContainer;

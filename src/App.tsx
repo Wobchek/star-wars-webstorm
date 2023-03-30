@@ -5,11 +5,11 @@ import ContentContainer from "./components/Content/ContentContainer";
 
 
 
-function App(props: any) {
+function App() {
     return (
         <div className='app-wrapper'>
-            <HeaderContainer state={props.state} dispatch={props.dispatch}/>
-            <ContentContainer state={props.state} dispatch={props.dispatch}/>
+            <HeaderContainer />
+            <ContentContainer />
         </div>
     )
 }
