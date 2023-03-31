@@ -11,3 +11,10 @@
     flex-wrap: wrap;
     gap: 50px;
 }
+
+.btn {
+    color: red;
+    font-size: 20px;
+    margin: 10px 0;
+    margin: auto;
+}

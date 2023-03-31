@@ -9,7 +9,7 @@ const Card = (props) => {
     return (
         <div className={styles.card}>
             <div className={styles.name}>{props.name}</div>
-            <img className={styles.img} src={props.image}/>
+            <img className={styles.img} src={props.image} alt={'Изображение'}/>
             <button onClick={btnOpenModel} className={styles.button}>Подробнее</button>
             <ModalWindow active={modalActive} setActive={setModalActive} modal={props.modal}/>
         </div>

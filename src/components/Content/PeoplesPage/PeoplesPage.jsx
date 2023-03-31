@@ -9,7 +9,7 @@ const PeoplesPage = (props) => {
     return (
         <div className={styles.content}>
             { contentPeople }
-            <button onClick={props.addPeople}>Добавить Эвока</button>
+            <button className={styles.btn} onClick={props.addPeople}>Добавить Эвока</button>
         </div>
     )
 }

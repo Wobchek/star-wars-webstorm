@@ -1,4 +1,3 @@
-import React from 'react';
 import PeoplesPage from "./PeoplesPage";
 import {addPeopleActionCreator} from "../../../redux/PeoplesPageReducer";
 import {connect} from "react-redux";

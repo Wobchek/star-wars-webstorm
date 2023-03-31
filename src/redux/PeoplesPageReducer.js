@@ -1,4 +1,4 @@
-import peoplesImg from "../assets/images/Peoples.jpg";
+import peoplesImg from "../assets/images/Peoples.jpg"; //default people img
 import lukeSkywalker from "../assets/images/Luke_Skywalker.jpg";
 import darthVader from "../assets/images/Darth_Vader.jpg";
 import leiaOrgana from "../assets/images/Leia_Organa.jpg";
@@ -29,12 +29,16 @@ const peoplesPageReducer = (state = initialState, action) => {
                 img: peoplesImg,
                 modal: action.name + " модальное окно",
             }
-            state.peoples.push(newPeople)
-            return state;
+            let stateCopy = {
+                ...state,
+                peoples: [...state.peoples]
+            };
+            stateCopy.peoples.push(newPeople)
+            return stateCopy;
         default:
             return state;
     }
 }
 
-export const addPeopleActionCreator = (newPeople) => ({type: ADD_PEOPLE, name: newPeople})
+export const addPeopleActionCreator = (name) => ({type: ADD_PEOPLE, name: name})
 export default peoplesPageReducer;

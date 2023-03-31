@@ -1,4 +1,3 @@
-import React from 'react';
 import PlanetsPage from "./PlanetsPage";
 import {addPlanetActionCreator} from "../../../redux/PlanetsPageReducer";
 import {connect} from "react-redux";
@@ -12,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        newPlanet: () => {
+        addPlanet: () => {
             let action = addPlanetActionCreator('Земля');
             dispatch(action)
         }

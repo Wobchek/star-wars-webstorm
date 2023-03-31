@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from "./Logo";
 import {connect} from "react-redux";
 
@@ -9,12 +8,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
-}
-
-const LogoContainer = connect(mapStateToProps, null)(Logo)
+const LogoContainer = connect(mapStateToProps)(Logo)
 
 export default LogoContainer;

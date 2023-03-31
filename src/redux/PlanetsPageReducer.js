@@ -23,12 +23,16 @@ const planetsPageReducer = (state = initialState, action) => {
                 img: planetImage,
                 modal: action.name + " модальное окно",
             }
-            state.planets.push(newPlanet)
-            return state;
+            let stateCopy = {
+                ...state,
+                planets: [...state.planets],
+            };
+            stateCopy.planets.push(newPlanet)
+            return stateCopy;
         default:
             return state;
     }
 }
 
-export const addPlanetActionCreator = (newPlanet) => ({type: ADD_PLANET, name: newPlanet})
+export const addPlanetActionCreator = (name) => ({type: ADD_PLANET, name: name})
 export default planetsPageReducer;

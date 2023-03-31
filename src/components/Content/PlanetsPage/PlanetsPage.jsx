@@ -11,6 +11,7 @@ const PlanetsPage = (props) => {
         <div>
             <div className={styles.content}>
                 {contentPlanets}
+                <button className={styles.btn} onClick={props.addPlanet}>Добавить планету</button>
             </div>
         </div>
     )
