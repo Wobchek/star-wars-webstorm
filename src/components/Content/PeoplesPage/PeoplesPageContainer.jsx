@@ -1,5 +1,5 @@
 import PeoplesPage from "./PeoplesPage";
-import {addPeopleActionCreator} from "../../../redux/PeoplesPageReducer";
+import {addPeopleCreator} from "../../../redux/PeoplesPageReducer";
 import {connect} from "react-redux";
 
 
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addPeople: () => {
-            let action = addPeopleActionCreator('Эвоки');
+            let action = addPeopleCreator('Эвоки');
             dispatch(action)
         },
     }

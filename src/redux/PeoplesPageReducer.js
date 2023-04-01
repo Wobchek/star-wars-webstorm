@@ -29,16 +29,22 @@ const peoplesPageReducer = (state = initialState, action) => {
                 img: peoplesImg,
                 modal: action.name + " модальное окно",
             }
-            let stateCopy = {
+            // ---------Раньше так----------------
+            // stateCopy =
+            //     ...state,
+            //     peoples: [...state.peoples]
+            // };
+            // stateCopy.peoples.push(newPeople)
+            // return stateCopy;
+            //------------------------------------
+            return { // теперь так
                 ...state,
-                peoples: [...state.peoples]
+                peoples: [...state.peoples, newPeople]
             };
-            stateCopy.peoples.push(newPeople)
-            return stateCopy;
         default:
             return state;
     }
 }
 
-export const addPeopleActionCreator = (name) => ({type: ADD_PEOPLE, name: name})
+export const addPeopleCreator = (name) => ({type: ADD_PEOPLE, name: name})
 export default peoplesPageReducer;

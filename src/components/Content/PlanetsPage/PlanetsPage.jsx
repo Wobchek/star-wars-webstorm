@@ -6,7 +6,7 @@ import ContentItem from "../ContentItem/ContentItem";
 /*Отображаемый материал страницы*/
 const PlanetsPage = (props) => {
     /*Мапинг исходного массива объектов*/
-    let contentPlanets = props.planetsPage.planets.map(p => <ContentItem id={p.id} name={p.name} image={p.img} modal={p.modal}/>)
+    let contentPlanets = props.planetsPage.planets.map(p => <ContentItem key={p.id} id={p.id} name={p.name} image={p.img} modal={p.modal}/>)
     return (
         <div>
             <div className={styles.content}>
