@@ -1,5 +1,6 @@
 import "./ModalWindow.css";
 import React from 'react'
+import InsideModalText from "./InsideModalText/InsideModalText";
 
 const ModalWindow = (props) => {
     let closeModal = () => props.setActive(false);
@@ -10,7 +11,7 @@ const ModalWindow = (props) => {
     return (
         <div className={activeModal} onClick={closeModal}>
             <div className={activeModalContent} onClick={unCloseFunction}>
-                {props.modal}
+                <InsideModalText modalInfo={props.modalInfo}/>
             </div>
         </div>
     )

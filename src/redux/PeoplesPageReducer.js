@@ -7,6 +7,7 @@ import chewie from "../assets/images/Chewie.jpg";
 import hanSolo from "../assets/images/Han_Solo.jpg";
 
 const ADD_PEOPLE = 'ADD-PEOPLE';
+const SET_PEOPLES = 'SET-PEOPLES';
 
 let initialState = {
     /*Массив персонажей*/
@@ -41,10 +42,16 @@ const peoplesPageReducer = (state = initialState, action) => {
                 ...state,
                 peoples: [...state.peoples, newPeople]
             };
+        case SET_PEOPLES:
+            return {
+                ...state,
+                peoples: [...state.peoples, ...action.peoples]
+            };
         default:
             return state;
     }
 }
 
-export const addPeopleCreator = (name) => ({type: ADD_PEOPLE, name: name})
+export const addPeopleAC = (name) => ({type: ADD_PEOPLE, name: name})
+export const setPeoplesAC = (peoples) => ({type: SET_PEOPLES, peoples})
 export default peoplesPageReducer;

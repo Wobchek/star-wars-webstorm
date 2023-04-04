@@ -40,5 +40,5 @@ const planetsPageReducer = (state = initialState, action) => {
     }
 }
 
-export const addPlanetCreator = (name) => ({type: ADD_PLANET, name: name})
+export const addPlanetAC = (name) => ({type: ADD_PLANET, name: name})
 export default planetsPageReducer;

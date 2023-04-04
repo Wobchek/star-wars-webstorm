@@ -6,11 +6,11 @@ const ContentItem = (props) => {
     return (
         <div>
             <div className={styles.card}>
-                <Card name={props.name} image={props.image} modal={props.modal}/>
+                <Card name={props.name} image={props.image} modalInfo={props.modalInfo}/>
             </div>
         </div>
 
-)
+    )
 }
 
 export default ContentItem;

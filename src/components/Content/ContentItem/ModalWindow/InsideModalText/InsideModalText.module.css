@@ -1,0 +1,16 @@
+.text h1 {
+    margin-bottom: 10px;
+}
+
+ .text ul {
+     list-style: none;
+ }
+
+ .text li {
+     font-size: 25px;
+     padding-bottom: 5px;
+ }
+
+.text li:last-child {
+    padding-bottom: 0px;
+}

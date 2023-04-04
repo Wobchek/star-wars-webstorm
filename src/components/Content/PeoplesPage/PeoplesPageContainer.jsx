@@ -1,17 +1,21 @@
 import PeoplesPage from "./PeoplesPage";
-import {addPeopleCreator} from "../../../redux/PeoplesPageReducer";
+import {addPeopleAC, setPeoplesAC} from "../../../redux/PeoplesPageReducer";
 import {connect} from "react-redux";
 
 
 const mapStateToProps = (state) => {
     return {
-        peoplesPage: state.peoplesPage,
+        peoples: state.peoplesPage.peoples,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         addPeople: () => {
-            let action = addPeopleCreator('Эвоки');
+            let action = addPeopleAC('Эвоки');
+            dispatch(action)
+        },
+        setPeoples: (peoples) => {
+            let action = setPeoplesAC(peoples);
             dispatch(action)
         },
     }
