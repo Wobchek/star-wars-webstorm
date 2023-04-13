@@ -1,7 +1,47 @@
-import PeoplesPage from "./PeoplesPage";
-import {addPeopleAC, setCurrentPageAC, setPeoplesAC} from "../../../redux/PeoplesPageReducer";
+import {
+    addPeopleAC,
+    setCurrentPageAC,
+    setPeoplesAC,
+    setTotalPeoplesCountAC,
+    TogglePreloaderAC
+} from "../../../redux/PeoplesPageReducer";
 import {connect} from "react-redux";
+import React, {useEffect} from 'react';
+import axios from "axios";
+import PeoplesPage from "./PeoplesPage";
+import preloader from "../../../assets/images/Preloader/Preloader.gif";
 
+/*Отображаемый материал страницы*/
+const PeoplesPageContainer = (props) => {
+    let baseUrl = 'https://swapi.dev/api';
+    useEffect(() => {
+            props.TogglePreloader(true)
+            axios.get(baseUrl + `/people/?page=${props.currentPage}`).then(response => {
+                props.TogglePreloader(false);
+                props.setPeoples(response.data.results);
+                props.setTotalPeoplesCount(response.data.count);
+            })
+        }, []
+    );
+    /*Запрос новой страницы*/
+    let onPageChange = (page) => {
+        props.TogglePreloader(true)
+        props.setCurrentPage(page);
+        axios.get(baseUrl + `/people/?page=${page}`).then(response => {
+            props.TogglePreloader(false);
+            props.setPeoples(response.data.results)
+        });
+    }
+
+    return (
+        <>
+            {props.isFetching ? <img src={preloader}/> : null}
+            <PeoplesPage onPageChange={onPageChange} addPeople={props.addPeople}
+                         peoples={props.peoples} totalPeoplesCount={props.totalPeoplesCount}
+                         pageSize={props.pageSize} currentPage={props.currentPage}/>
+        </>
+    )
+}
 
 const mapStateToProps = (state) => {
     return {
@@ -9,6 +49,7 @@ const mapStateToProps = (state) => {
         pageSize: state.peoplesPage.pageSize,
         totalPeoplesCount: state.peoplesPage.totalPeoplesCount,
         currentPage: state.peoplesPage.currentPage,
+        isFetching: state.peoplesPage.isFetching,
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -25,9 +66,15 @@ const mapDispatchToProps = (dispatch) => {
             let action = setCurrentPageAC(currentPage);
             dispatch(action)
         },
+        setTotalPeoplesCount: (totalCount) => {
+            let action = setTotalPeoplesCountAC(totalCount);
+            dispatch(action)
+        },
+        TogglePreloader: (toggle) => {
+            let action = TogglePreloaderAC(toggle);
+            dispatch(action)
+        },
     }
 }
 
-const PeoplesPageContainer = connect(mapStateToProps, mapDispatchToProps)(PeoplesPage);
-
-export default PeoplesPageContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(PeoplesPageContainer);

@@ -9,13 +9,16 @@ import hanSolo from "../assets/images/Han_Solo.jpg";
 const ADD_PEOPLE = 'ADD-PEOPLE';
 const SET_PEOPLES = 'SET-PEOPLES';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SET_TOTAL_PEOPLES_COUNT = 'SET-TOTAL-PEOPLES-COUNT';
+const TOGGLE_PRELOADER = 'TOGGLE-PRELOADER';
 
 let initialState = {
-    totalPeoplesCount: [82],
+    totalPeoplesCount: 0,
     pageSize: 10,
     currentPage: 1,
     /*Массив персонажей*/
     peoples: [],
+    isFetching: false,
 };
 
 let firstPagePeoples = [
@@ -36,14 +39,6 @@ const peoplesPageReducer = (state = initialState, action) => {
                 img: peoplesImg,
                 modal: action.name + " модальное окно",
             }
-            // ---------Раньше так----------------
-            // stateCopy =
-            //     ...state,
-            //     peoples: [...state.peoples]
-            // };
-            // stateCopy.peoples.push(newPeople)
-            // return stateCopy;
-            //------------------------------------
             return { // теперь так
                 ...state,
                 peoples: [...state.peoples, newPeople]
@@ -62,12 +57,23 @@ const peoplesPageReducer = (state = initialState, action) => {
                     ...state,
                     peoples: action.peoples
                 };
-            };
+            }
+            ;
         case SET_CURRENT_PAGE:
-                return {
-                    ...state,
-                    currentPage: action.currentPage
-                };
+            return {
+                ...state,
+                currentPage: action.currentPage
+            };
+        case SET_TOTAL_PEOPLES_COUNT:
+            return {
+                ...state,
+                totalPeoplesCount: action.totalCount
+            };
+            case TOGGLE_PRELOADER:
+            return {
+                ...state,
+                isFetching: action.toggle
+            };
         default:
             return state;
     }
@@ -76,4 +82,6 @@ const peoplesPageReducer = (state = initialState, action) => {
 export const addPeopleAC = (name) => ({type: ADD_PEOPLE, name: name})
 export const setPeoplesAC = (peoples) => ({type: SET_PEOPLES, peoples})
 export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalPeoplesCountAC = (totalCount) => ({type: SET_TOTAL_PEOPLES_COUNT, totalCount})
+export const TogglePreloaderAC = (toggle) => ({type: TOGGLE_PRELOADER, toggle})
 export default peoplesPageReducer;
