@@ -8,18 +8,24 @@ import hanSolo from "../assets/images/Han_Solo.jpg";
 
 const ADD_PEOPLE = 'ADD-PEOPLE';
 const SET_PEOPLES = 'SET-PEOPLES';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 
 let initialState = {
+    totalPeoplesCount: [82],
+    pageSize: 10,
+    currentPage: 1,
     /*Массив персонажей*/
-    peoples: [
-        {id: 1, name: "Люк Скайуокер", img: lukeSkywalker, modal: "Люк Скайуокер модальное окно",},
-        {id: 2, name: "Дарт Вейдер", img: darthVader, modal: "Дарт Вейдер модальное окно",},
-        {id: 3, name: "Лея Органа", img: leiaOrgana, modal: "Лея Органа модальное окно",},
-        {id: 4, name: "Оби-Ван Кеноби", img: obiWanKenobi, modal: "Оби-Ван Кеноби модальное окно",},
-        {id: 5, name: "Чуи", img: chewie, modal: "Чуи модальное окно",},
-        {id: 6, name: "Хан Соло", img: hanSolo, modal: "Хан Соло модальное окно",},
-    ],
+    peoples: [],
 };
+
+let firstPagePeoples = [
+    {id: 1, name: "Люк Скайуокер", img: lukeSkywalker, modal: "Люк Скайуокер модальное окно",},
+    {id: 2, name: "Дарт Вейдер", img: darthVader, modal: "Дарт Вейдер модальное окно",},
+    {id: 3, name: "Лея Органа", img: leiaOrgana, modal: "Лея Органа модальное окно",},
+    {id: 4, name: "Оби-Ван Кеноби", img: obiWanKenobi, modal: "Оби-Ван Кеноби модальное окно",},
+    {id: 5, name: "Чуи", img: chewie, modal: "Чуи модальное окно",},
+    {id: 6, name: "Хан Соло", img: hanSolo, modal: "Хан Соло модальное окно",},
+]
 
 const peoplesPageReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -43,10 +49,25 @@ const peoplesPageReducer = (state = initialState, action) => {
                 peoples: [...state.peoples, newPeople]
             };
         case SET_PEOPLES:
-            return {
-                ...state,
-                peoples: [...state.peoples, ...action.peoples]
+            // if (state.currentPage === 1 && state.peoples.length === 0) {
+            if (state.currentPage === 1) {
+                state.peoples = [];
+                firstPagePeoples.map(e => state.peoples.push(e))
+                return {
+                    ...state,
+                    peoples: [...state.peoples, ...action.peoples]
+                };
+            } else {
+                return {
+                    ...state,
+                    peoples: action.peoples
+                };
             };
+        case SET_CURRENT_PAGE:
+                return {
+                    ...state,
+                    currentPage: action.currentPage
+                };
         default:
             return state;
     }
@@ -54,4 +75,5 @@ const peoplesPageReducer = (state = initialState, action) => {
 
 export const addPeopleAC = (name) => ({type: ADD_PEOPLE, name: name})
 export const setPeoplesAC = (peoples) => ({type: SET_PEOPLES, peoples})
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export default peoplesPageReducer;
