@@ -1,6 +1,6 @@
 import styles from './PeoplesPage.module.css';
 import ContentItem from "../ContentItem/ContentItem";
-import peoplesImg from "../../../assets/images/LEGO_Yoda.jpg"; //default people img
+import peoplesImg from "../../assets/images/LEGO_Yoda.jpg"; //default people img
 
 /*Отображаемый материал страницы*/
 const PeoplesPage = (props) => {

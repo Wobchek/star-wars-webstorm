@@ -6,13 +6,23 @@
     flex-shrink: 0;
 }
 
-.header_logo {
+.navbar {
     display: flex;
     justify-content: center;
+    gap: 15px;
+    font-size: 1.7rem;
 }
 
-.header_navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.pending {
+    text-decoration: unset;
+    color: white;
+}
+
+.active {
+    text-decoration: unset;
+    color: gold;
+}
+
+.logoImg {
+    max-width: 300px;
 }

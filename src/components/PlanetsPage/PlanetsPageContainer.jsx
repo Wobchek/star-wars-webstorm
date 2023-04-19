@@ -1,6 +1,6 @@
 import PlanetsPage from "./PlanetsPage";
 import {connect} from "react-redux";
-import {addPlanetAC} from "../../../redux/PlanetsPageReducer";
+import {addPlanetAC} from "../../redux/PlanetsPageReducer";
 
 
 const mapStateToProps = (state) => {

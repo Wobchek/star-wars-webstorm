@@ -44,7 +44,6 @@ const peoplesPageReducer = (state = initialState, action) => {
                 peoples: [...state.peoples, newPeople]
             };
         case SET_PEOPLES:
-            // if (state.currentPage === 1 && state.peoples.length === 0) {
             if (state.currentPage === 1) {
                 state.peoples = [];
                 firstPagePeoples.map(e => state.peoples.push(e))
@@ -58,7 +57,6 @@ const peoplesPageReducer = (state = initialState, action) => {
                     peoples: action.peoples
                 };
             }
-            ;
         case SET_CURRENT_PAGE:
             return {
                 ...state,
@@ -69,7 +67,7 @@ const peoplesPageReducer = (state = initialState, action) => {
                 ...state,
                 totalPeoplesCount: action.totalCount
             };
-            case TOGGLE_PRELOADER:
+        case TOGGLE_PRELOADER:
             return {
                 ...state,
                 isFetching: action.toggle
@@ -79,9 +77,9 @@ const peoplesPageReducer = (state = initialState, action) => {
     }
 }
 
-export const addPeopleAC = (name) => ({type: ADD_PEOPLE, name: name})
-export const setPeoplesAC = (peoples) => ({type: SET_PEOPLES, peoples})
-export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
-export const setTotalPeoplesCountAC = (totalCount) => ({type: SET_TOTAL_PEOPLES_COUNT, totalCount})
-export const TogglePreloaderAC = (toggle) => ({type: TOGGLE_PRELOADER, toggle})
+export const addPeople = () => ({type: ADD_PEOPLE, name: 'Эвок'})
+export const setPeoples = (peoples) => ({type: SET_PEOPLES, peoples})
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalPeoplesCount = (totalCount) => ({type: SET_TOTAL_PEOPLES_COUNT, totalCount})
+export const TogglePreloader = (toggle) => ({type: TOGGLE_PRELOADER, toggle})
 export default peoplesPageReducer;

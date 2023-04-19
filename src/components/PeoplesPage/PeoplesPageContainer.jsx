@@ -1,15 +1,15 @@
 import {
-    addPeopleAC,
-    setCurrentPageAC,
-    setPeoplesAC,
-    setTotalPeoplesCountAC,
-    TogglePreloaderAC
-} from "../../../redux/PeoplesPageReducer";
+    addPeople,
+    setCurrentPage,
+    setPeoples,
+    setTotalPeoplesCount,
+    TogglePreloader
+} from "../../redux/PeoplesPageReducer";
 import {connect} from "react-redux";
 import React, {useEffect} from 'react';
 import axios from "axios";
 import PeoplesPage from "./PeoplesPage";
-import preloader from "../../../assets/images/Preloader/Preloader.gif";
+import Preloader from "../common/Preloader/Preloader";
 
 /*Отображаемый материал страницы*/
 const PeoplesPageContainer = (props) => {
@@ -35,7 +35,7 @@ const PeoplesPageContainer = (props) => {
 
     return (
         <>
-            {props.isFetching ? <img src={preloader}/> : null}
+            {props.isFetching ? <Preloader /> : null}
             <PeoplesPage onPageChange={onPageChange} addPeople={props.addPeople}
                          peoples={props.peoples} totalPeoplesCount={props.totalPeoplesCount}
                          pageSize={props.pageSize} currentPage={props.currentPage}/>
@@ -43,38 +43,37 @@ const PeoplesPageContainer = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
+const mapStateToProps = (state) => ({
         peoples: state.peoplesPage.peoples,
         pageSize: state.peoplesPage.pageSize,
         totalPeoplesCount: state.peoplesPage.totalPeoplesCount,
         currentPage: state.peoplesPage.currentPage,
         isFetching: state.peoplesPage.isFetching,
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addPeople: () => {
-            let action = addPeopleAC('Эвоки');
-            dispatch(action)
-        },
-        setPeoples: (peoples) => {
-            let action = setPeoplesAC(peoples);
-            dispatch(action)
-        },
-        setCurrentPage: (currentPage) => {
-            let action = setCurrentPageAC(currentPage);
-            dispatch(action)
-        },
-        setTotalPeoplesCount: (totalCount) => {
-            let action = setTotalPeoplesCountAC(totalCount);
-            dispatch(action)
-        },
-        TogglePreloader: (toggle) => {
-            let action = TogglePreloaderAC(toggle);
-            dispatch(action)
-        },
-    }
-}
+})
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         addPeople: () => {
+//             let action = addPeopleAC('Эвоки');
+//             dispatch(action)
+//         },
+//         setPeoples: (peoples) => {
+//             let action = setPeoplesAC(peoples);
+//             dispatch(action)
+//         },
+//         setCurrentPage: (currentPage) => {
+//             let action = setCurrentPageAC(currentPage);
+//             dispatch(action)
+//         },
+//         setTotalPeoplesCount: (totalCount) => {
+//             let action = setTotalPeoplesCountAC(totalCount);
+//             dispatch(action)
+//         },
+//         TogglePreloader: (toggle) => {
+//             let action = TogglePreloaderAC(toggle);
+//             dispatch(action)
+//         },
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PeoplesPageContainer);
+export default connect(mapStateToProps, { addPeople, setPeoples, setCurrentPage, setTotalPeoplesCount, TogglePreloader,}
+)(PeoplesPageContainer);

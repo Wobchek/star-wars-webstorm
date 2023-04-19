@@ -12,3 +12,13 @@
     flex-direction: column;
     align-items: normal;
 }
+
+.undefined-route {
+    display: inline-block;
+    padding: 30px;
+    margin: auto;
+    border: 10px solid red;
+    background-color: black;
+    font-size: 100px;
+    color: red;
+}

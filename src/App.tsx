@@ -1,15 +1,24 @@
 import React from 'react';
 import './App.css';
+import {Route, Routes} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import ContentContainer from "./components/Content/ContentContainer";
+import HomePage from "./components/HomePage/HomePage";
+import PlanetsPageContainer from "./components/PlanetsPage/PlanetsPageContainer";
+import PeoplesPageContainer from "./components/PeoplesPage/PeoplesPageContainer";
 
 
 
 function App() {
     return (
         <div className='app-wrapper'>
-            <HeaderContainer />
-            <ContentContainer />
+            <Routes>
+                <Route path="/" element={<HeaderContainer/>}>
+                    <Route index element={<HomePage/>}/>
+                    <Route path="planets" element={<PlanetsPageContainer/>}/>
+                    <Route path="peoples" element={<PeoplesPageContainer/>}/>
+                    <Route path="*" element={<h2 className='undefined-route'>Ресурс не найден</h2>} />
+                </Route>
+            </Routes>
         </div>
     )
 }
