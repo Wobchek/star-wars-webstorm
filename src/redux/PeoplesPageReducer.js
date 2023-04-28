@@ -5,20 +5,23 @@ import leiaOrgana from "../assets/images/Leia_Organa.jpg";
 import obiWanKenobi from "../assets/images/Obi_Wan_Kenobi.jpg";
 import chewie from "../assets/images/Chewie.jpg";
 import hanSolo from "../assets/images/Han_Solo.jpg";
+import {getPeoples, getPeoplesListInfo} from "../api/api";
 
 const ADD_PEOPLE = 'ADD-PEOPLE';
 const SET_PEOPLES = 'SET-PEOPLES';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_PEOPLES_COUNT = 'SET-TOTAL-PEOPLES-COUNT';
+const SET_PAGE_SIZE = 'SET-PAGE-SIZE';
 const TOGGLE_PRELOADER = 'TOGGLE-PRELOADER';
+const TOGGLE_DISABEL = 'TOGGLE-DISABEL';
 
 let initialState = {
     totalPeoplesCount: 0,
-    pageSize: 10,
+    pageSize: 0,
     currentPage: 1,
-    /*Массив персонажей*/
     peoples: [],
     isFetching: false,
+    fetchingToggleDisable: false,
 };
 
 let firstPagePeoples = [
@@ -67,13 +70,43 @@ const peoplesPageReducer = (state = initialState, action) => {
                 ...state,
                 totalPeoplesCount: action.totalCount
             };
+        case SET_PAGE_SIZE:
+            return {
+                ...state,
+                pageSize: action.size
+            };
         case TOGGLE_PRELOADER:
             return {
                 ...state,
                 isFetching: action.toggle
             };
+        case TOGGLE_DISABEL:
+            return {
+                ...state,
+                fetchingToggleDisable: action.toggle
+            };
         default:
             return state;
+    }
+}
+//Санка получения списка персонажей
+export const getPeoplesThunk = (currentPage) => {
+    return (dispatch) => {
+        dispatch(togglePreloader(true));
+        //axios
+        getPeoples(currentPage).then(data => {
+            dispatch(togglePreloader(false));
+            dispatch(setPeoples(data.results));
+        });
+    }
+}
+//Санка нумерации страницы
+export const getPeoplesPaginationThunk = () => {
+    return (dispatch) => {
+        getPeoplesListInfo().then(data => {
+            dispatch(setTotalPageSize(data.results.length));
+            dispatch(setTotalPeoplesCount(data.count));
+        });
     }
 }
 
@@ -81,5 +114,7 @@ export const addPeople = () => ({type: ADD_PEOPLE, name: 'Эвок'})
 export const setPeoples = (peoples) => ({type: SET_PEOPLES, peoples})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalPeoplesCount = (totalCount) => ({type: SET_TOTAL_PEOPLES_COUNT, totalCount})
-export const TogglePreloader = (toggle) => ({type: TOGGLE_PRELOADER, toggle})
+export const setTotalPageSize = (size) => ({type: SET_PAGE_SIZE, size})
+export const togglePreloader = (toggle) => ({type: TOGGLE_PRELOADER, toggle})
+export const setToggleForDisable = (toggle) => ({type: TOGGLE_DISABEL, toggle})
 export default peoplesPageReducer;

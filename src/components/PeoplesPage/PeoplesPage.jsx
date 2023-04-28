@@ -1,6 +1,6 @@
 import styles from './PeoplesPage.module.css';
 import ContentItem from "../ContentItem/ContentItem";
-import peoplesImg from "../../assets/images/LEGO_Yoda.jpg"; //default people img
+import peoplesImg from "../../assets/images/LEGO_Yoda.jpg";
 
 /*Отображаемый материал страницы*/
 const PeoplesPage = (props) => {
@@ -26,7 +26,13 @@ const PeoplesPage = (props) => {
             </div>
             <div className={styles.content}>
                 {contentPeople}
-                <button className={styles.btn} onClick={props.addPeople}>Добавить Эвока</button>
+                <button disabled={props.fetchingToggleDisable} className={styles.btn}
+                        onClick={() => {
+                            props.setToggleForDisable(true)
+                            props.addPeople()
+                            props.setToggleForDisable(false)
+                        }}>Добавить Эвока
+                </button>
             </div>
         </div>
     )
