@@ -6,7 +6,7 @@ const ContentItem = (props) => {
     return (
         <div>
             <div className={styles.card}>
-                <Card name={props.name} image={props.image} modalInfo={props.modalInfo}/>
+                <Card name={props.name} image={props.image} modalInfo={props.modalInfo} id={props.key}/>
             </div>
         </div>
 

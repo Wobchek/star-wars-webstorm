@@ -1,6 +1,7 @@
 import styles from './PeoplesPage.module.css';
 import ContentItem from "../ContentItem/ContentItem";
 import peoplesImg from "../../assets/images/LEGO_Yoda.jpg";
+import {setToggleDisable} from "../../redux/PeoplesPageReducer";
 
 /*Отображаемый материал страницы*/
 const PeoplesPage = (props) => {
@@ -28,9 +29,9 @@ const PeoplesPage = (props) => {
                 {contentPeople}
                 <button disabled={props.fetchingToggleDisable} className={styles.btn}
                         onClick={() => {
-                            props.setToggleForDisable(true)
+                            props.setToggleDisable(true)
                             props.addPeople()
-                            props.setToggleForDisable(false)
+                            props.setToggleDisable(false)
                         }}>Добавить Эвока
                 </button>
             </div>

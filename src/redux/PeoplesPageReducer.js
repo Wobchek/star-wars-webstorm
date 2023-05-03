@@ -5,7 +5,7 @@ import leiaOrgana from "../assets/images/Leia_Organa.jpg";
 import obiWanKenobi from "../assets/images/Obi_Wan_Kenobi.jpg";
 import chewie from "../assets/images/Chewie.jpg";
 import hanSolo from "../assets/images/Han_Solo.jpg";
-import {getPeoples, getPeoplesListInfo} from "../api/api";
+import {peoplesAPI} from "../api/api";
 
 const ADD_PEOPLE = 'ADD-PEOPLE';
 const SET_PEOPLES = 'SET-PEOPLES';
@@ -14,6 +14,10 @@ const SET_TOTAL_PEOPLES_COUNT = 'SET-TOTAL-PEOPLES-COUNT';
 const SET_PAGE_SIZE = 'SET-PAGE-SIZE';
 const TOGGLE_PRELOADER = 'TOGGLE-PRELOADER';
 const TOGGLE_DISABEL = 'TOGGLE-DISABEL';
+const SET_HOMEWORLD = 'SET-HOMEWORLD';
+const SET_FILMS = 'SET-FILMS';
+const SET_VEHICLES = 'SET-VEHICLES';
+const SET_STARSHIPS = 'SET-STARSHIPS';
 
 let initialState = {
     totalPeoplesCount: 0,
@@ -22,6 +26,11 @@ let initialState = {
     peoples: [],
     isFetching: false,
     fetchingToggleDisable: false,
+//Информация модального окна
+    homeworld: ["da"],
+    films: [],
+    vehicles: [],
+    starships: [],
 };
 
 let firstPagePeoples = [
@@ -85,6 +94,26 @@ const peoplesPageReducer = (state = initialState, action) => {
                 ...state,
                 fetchingToggleDisable: action.toggle
             };
+        case SET_HOMEWORLD:
+            return {
+                ...state,
+                homeworld: action.homeworld
+            };
+        case SET_FILMS:
+            return {
+                ...state,
+                films: [...action.films]
+            };
+        case SET_VEHICLES:
+            return {
+                ...state,
+                vehicles: [...action.vehicles]
+            };
+        case SET_STARSHIPS:
+            return {
+                ...state,
+                starships: [...action.starships]
+            };
         default:
             return state;
     }
@@ -94,7 +123,7 @@ export const getPeoplesThunk = (currentPage) => {
     return (dispatch) => {
         dispatch(togglePreloader(true));
         //axios
-        getPeoples(currentPage).then(data => {
+        peoplesAPI.getPeoples(currentPage).then(data => {
             dispatch(togglePreloader(false));
             dispatch(setPeoples(data.results));
         });
@@ -103,9 +132,39 @@ export const getPeoplesThunk = (currentPage) => {
 //Санка нумерации страницы
 export const getPeoplesPaginationThunk = () => {
     return (dispatch) => {
-        getPeoplesListInfo().then(data => {
+        peoplesAPI.getPeoplesListInfo().then(data => {
             dispatch(setTotalPageSize(data.results.length));
             dispatch(setTotalPeoplesCount(data.count));
+        });
+    }
+}
+
+//Санки информации персонажей
+export const getPeoplesHomeworld = (planet) => {
+    return (dispatch) => {
+        peoplesAPI.getHomeworld(planet).then(data => {
+            dispatch(setPeoplesHomeworld(data.name))
+        });
+    }
+}
+export const getPeoplesFilms = (films) => {
+    return (dispatch) => {
+        peoplesAPI.getFilms(films).then(data => {
+            dispatch(setPeoplesFilms(data.title))
+        });
+    }
+}
+export const getPeoplesVehicles = (vehicles) => {
+    return (dispatch) => {
+        peoplesAPI.getVehicles(vehicles).then(data => {
+            dispatch(setPeoplesVehicles(data.name))
+        });
+    }
+}
+export const getPeoplesStarships = (starships) => {
+    return (dispatch) => {
+        peoplesAPI.getStarships(starships).then(data => {
+            dispatch(setPeoplesStarships(data.name))
         });
     }
 }
@@ -116,5 +175,9 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalPeoplesCount = (totalCount) => ({type: SET_TOTAL_PEOPLES_COUNT, totalCount})
 export const setTotalPageSize = (size) => ({type: SET_PAGE_SIZE, size})
 export const togglePreloader = (toggle) => ({type: TOGGLE_PRELOADER, toggle})
-export const setToggleForDisable = (toggle) => ({type: TOGGLE_DISABEL, toggle})
+export const setToggleDisable = (toggle) => ({type: TOGGLE_DISABEL, toggle})
+export const setPeoplesHomeworld = (homeworld) => ({type: SET_HOMEWORLD, homeworld})
+export const setPeoplesFilms = (films) => ({type: SET_FILMS, films})
+export const setPeoplesVehicles = (vehicles) => ({type: SET_VEHICLES, vehicles})
+export const setPeoplesStarships = (starships) => ({type: SET_STARSHIPS, starships})
 export default peoplesPageReducer;

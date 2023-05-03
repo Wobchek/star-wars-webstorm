@@ -2,29 +2,20 @@ import styles from "./InsideModalText.module.css";
 import React from 'react'
 
 const InsideModalText = (props) => {
-    let data = props.modalInfo;
     return (
         <div className={styles.text}>
-            <h1>{data.name}</h1>
-            {/*<ul>*/}
-            {/*    <li>Рост: 133 см</li>*/}
-            {/*    <li>Вес: 200 кг</li>*/}
-            {/*    <li>Цвет волос: белый</li>*/}
-            {/*    <li>Цвет кожи: светлый</li>*/}
-            {/*    <li>Цвет глаз: карий</li>*/}
-            {/*    <li>Год рождения: дадатогда</li>*/}
-            {/*</ul>*/}
+            <h1>{props.data.name}</h1>
             <ul>
-                <li>Вес: {data.mass}</li>
-                <li>Цвет волос: {data.hair_color}</li>
-                <li>Цвет кожи: {data.skin_color}</li>
-                <li>Цвет глаз: {data.eye_color}</li>
-                <li>Год рождения: {data.birth_year}</li>
-                <li>Пол: {data.gender}</li>
-                {/*<li>Место рождения: {data.homeworld}</li>*/}
-                {/*<li>Фильмы: {data.films}</li>*/}
-                {/*<li>Транспорты: {data.vehicles}</li>*/}
-                {/*<li>Звездолеты: {data.starships}</li>*/}
+                <li>Вес: {props.data.mass}</li>
+                <li>Цвет волос: {props.data.hair_color}</li>
+                <li>Цвет кожи: {props.data.skin_color}</li>
+                <li>Цвет глаз: {props.data.eye_color}</li>
+                <li>Год рождения: {props.data.birth_year}</li>
+                <li>Пол: {props.data.gender}</li>
+                <li>Место рождения: {props.homeworld}</li>
+                <li>Фильмы: {props.films}</li>
+                <li>Транспорты: {props.vehicles}</li>
+                <li>Звездолеты: {props.starships}</li>
             </ul>
         </div>
     )

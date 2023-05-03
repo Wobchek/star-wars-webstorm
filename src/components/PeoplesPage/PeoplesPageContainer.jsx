@@ -1,6 +1,6 @@
 import {
     addPeople, getPeoplesPaginationThunk, getPeoplesThunk, setCurrentPage,
-    setPeoples, setToggleForDisable,
+    setPeoples, setToggleDisable,
     setTotalPageSize, setTotalPeoplesCount,
     togglePreloader
 } from "../../redux/PeoplesPageReducer";
@@ -29,7 +29,7 @@ const PeoplesPageContainer = (props) => {
                 : <PeoplesPage onPageChange={onPageChange} addPeople={props.addPeople}
                                peoples={props.peoples} totalPeoplesCount={props.totalPeoplesCount}
                                pageSize={props.pageSize} currentPage={props.currentPage}
-                               setToggleForDisable={props.setToggleForDisable}
+                               setToggleDisable={props.setToggleDisable}
                                fetchingToggleDisable={props.fetchingToggleDisable}/>
             }
         </>
@@ -52,7 +52,7 @@ export default connect(mapStateToProps, {
         setTotalPeoplesCount,
         setTotalPageSize,
         togglePreloader,
-        setToggleForDisable,
+        setToggleDisable,
         getPeoplesThunk,
         getPeoplesPaginationThunk,
     }
