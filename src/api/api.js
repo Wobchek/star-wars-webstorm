@@ -12,19 +12,19 @@ export const peoplesAPI = {
           .then(response => response.data)
    },
    getHomeworld(planet) {
-      return axios.get({planet})
+      return axios.get(`${planet}`)
           .then(response => response.data)
    },
    getFilms(films) {
-      return axios.get({films})
+      return axios.get(`${films}`)
           .then(response => response.data)
    },
    getVehicles(vehicles) {
-      return axios.get({vehicles})
+      return axios.get(`${vehicles}`)
           .then(response => response.data)
    },
    getStarships(starships) {
-      return axios.get({starships})
+      return axios.get(`${starships}`)
           .then(response => response.data)
    },
 }
