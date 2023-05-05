@@ -14,8 +14,9 @@ const InsideModalText = (props) => {
                 <li>Пол: {props.data.gender}</li>
                 <li>Место рождения: {props.homeworld}</li>
                 <li>Фильмы: {props.films}</li>
-                <li>Транспорты: {props.vehicles}</li>
-                <li>Звездолеты: {props.starships}</li>
+                { props.vehicles !== " " ? <li>Транспорты: {props.vehicles}</li> : <></>}
+                { props.starships !== " " ? <li>Звездолеты: {props.starships}</li> : <></>}
+
             </ul>
         </div>
     )

@@ -18,7 +18,9 @@ const SET_HOMEWORLD = 'SET-HOMEWORLD';
 const SET_FILMS = 'SET-FILMS';
 const DEL_FILMS = 'DEL-FILMS';
 const SET_VEHICLES = 'SET-VEHICLES';
+const DEL_VEHICLES = 'DEL-VEHICLES';
 const SET_STARSHIPS = 'SET-STARSHIPS';
+const DEL_STARSHIPS = 'DEL-STARSHIPS';
 
 let initialState = {
     totalPeoplesCount: 0,
@@ -113,12 +115,22 @@ const peoplesPageReducer = (state = initialState, action) => {
         case SET_VEHICLES:
             return {
                 ...state,
-                vehicles: [...action.vehicles]
+                vehicles: [...state.vehicles, ...action.vehicles]
+            };
+        case DEL_VEHICLES:
+            return {
+                ...state,
+                vehicles: action.vehicles
             };
         case SET_STARSHIPS:
             return {
                 ...state,
-                starships: [...action.starships]
+                starships: [...state.starships, ...action.starships]
+            };
+        case DEL_STARSHIPS:
+            return {
+                ...state,
+                starships: action.starships
             };
         default:
             return state;
@@ -158,21 +170,22 @@ export const getPeoplesFilms = (films) => {
         films.map(e => peoplesAPI.getFilms(e).then(data => {
             dispatch(setPeoplesFilms(e !== films[films.length-1] ? `${data.title}, ` :  `${data.title}.`))
         }));
-
     }
 }
 export const getPeoplesVehicles = (vehicles) => {
     return (dispatch) => {
-        peoplesAPI.getVehicles(vehicles).then(data => {
-            dispatch(setPeoplesVehicles(data.name))
-        });
+        dispatch(delPeoplesVehicles(vehicles.length >= 0 ? " " : "Нет"));
+        vehicles.map(e => peoplesAPI.getVehicles(e).then(data => {
+            dispatch(setPeoplesVehicles(e !== vehicles[vehicles.length-1] ? `${data.name}, ` :  `${data.name}.`))
+        }));
     }
 }
 export const getPeoplesStarships = (starships) => {
     return (dispatch) => {
-        peoplesAPI.getStarships(starships).then(data => {
-            dispatch(setPeoplesStarships(data.name))
-        });
+        dispatch(delPeoplesStarships(starships.length >= 0 ? " " : "Нет"));
+        starships.map(e => peoplesAPI.getStarships(e).then(data => {
+            dispatch(setPeoplesStarships(e !== starships[starships.length-1] ? `${data.name}, ` :  `${data.name}.`))
+        }));
     }
 }
 
@@ -187,5 +200,7 @@ export const setPeoplesHomeworld = (homeworld) => ({type: SET_HOMEWORLD, homewor
 export const setPeoplesFilms = (films) => ({type: SET_FILMS, films})
 export const delPeoplesFilms = (films) => ({type: DEL_FILMS, films})
 export const setPeoplesVehicles = (vehicles) => ({type: SET_VEHICLES, vehicles})
+export const delPeoplesVehicles = (vehicles) => ({type: DEL_VEHICLES, vehicles})
 export const setPeoplesStarships = (starships) => ({type: SET_STARSHIPS, starships})
+export const delPeoplesStarships = (starships) => ({type: DEL_STARSHIPS, starships})
 export default peoplesPageReducer;
