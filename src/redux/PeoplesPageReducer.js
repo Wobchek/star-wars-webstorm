@@ -16,6 +16,7 @@ const TOGGLE_PRELOADER = 'TOGGLE-PRELOADER';
 const TOGGLE_DISABEL = 'TOGGLE-DISABEL';
 const SET_HOMEWORLD = 'SET-HOMEWORLD';
 const SET_FILMS = 'SET-FILMS';
+const DEL_FILMS = 'DEL-FILMS';
 const SET_VEHICLES = 'SET-VEHICLES';
 const SET_STARSHIPS = 'SET-STARSHIPS';
 
@@ -27,7 +28,7 @@ let initialState = {
     isFetching: false,
     fetchingToggleDisable: false,
 //Информация модального окна
-    homeworld: ["da"],
+    homeworld: ["Неизвестно"],
     films: [],
     vehicles: [],
     starships: [],
@@ -102,7 +103,12 @@ const peoplesPageReducer = (state = initialState, action) => {
         case SET_FILMS:
             return {
                 ...state,
-                films: [...action.films]
+                films: [...state.films, ...action.films]
+            };
+        case DEL_FILMS:
+            return {
+                ...state,
+                films: action.films
             };
         case SET_VEHICLES:
             return {
@@ -122,7 +128,6 @@ const peoplesPageReducer = (state = initialState, action) => {
 export const getPeoplesThunk = (currentPage) => {
     return (dispatch) => {
         dispatch(togglePreloader(true));
-        //axios
         peoplesAPI.getPeoples(currentPage).then(data => {
             dispatch(togglePreloader(false));
             dispatch(setPeoples(data.results));
@@ -149,9 +154,11 @@ export const getPeoplesHomeworld = (planet) => {
 }
 export const getPeoplesFilms = (films) => {
     return (dispatch) => {
-        peoplesAPI.getFilms(films).then(data => {
-            dispatch(setPeoplesFilms(data.title))
-        });
+        dispatch(delPeoplesFilms(" "));
+        films.map(e => peoplesAPI.getFilms(e).then(data => {
+            dispatch(setPeoplesFilms(e !== films[films.length-1] ? `${data.title}, ` :  `${data.title}.`))
+        }));
+
     }
 }
 export const getPeoplesVehicles = (vehicles) => {
@@ -178,6 +185,7 @@ export const togglePreloader = (toggle) => ({type: TOGGLE_PRELOADER, toggle})
 export const setToggleDisable = (toggle) => ({type: TOGGLE_DISABEL, toggle})
 export const setPeoplesHomeworld = (homeworld) => ({type: SET_HOMEWORLD, homeworld})
 export const setPeoplesFilms = (films) => ({type: SET_FILMS, films})
+export const delPeoplesFilms = (films) => ({type: DEL_FILMS, films})
 export const setPeoplesVehicles = (vehicles) => ({type: SET_VEHICLES, vehicles})
 export const setPeoplesStarships = (starships) => ({type: SET_STARSHIPS, starships})
 export default peoplesPageReducer;

@@ -1,8 +1,6 @@
 import styles from './PeoplesPage.module.css';
 import ContentItem from "../ContentItem/ContentItem";
 import peoplesImg from "../../assets/images/LEGO_Yoda.jpg";
-import {setToggleDisable} from "../../redux/PeoplesPageReducer";
-
 /*Отображаемый материал страницы*/
 const PeoplesPage = (props) => {
 
